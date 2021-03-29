@@ -9,7 +9,15 @@ database = "ardit700_pm1database"
 
 cursor = con.cursor()
 
-query = cursor.execute("SELECT * FROM Dictionary ")
-results = cursor.fetchall()
+word = input("Enter a word: ")
 
-print(results)
+query = cursor.execute("SELECT * FROM Dictionary WHERE Expression = '%s' " % word)
+results = cursor.fetchall()
+# results is a list made of tuples
+# each tuple is an expression and defintion
+
+if results:
+    for result in results:
+        print(result[1])
+else:
+    print ("No word found")
